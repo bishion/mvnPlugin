@@ -39,13 +39,13 @@ public class Forth extends AbstractMojo{
                 String targetPath ;
                 int lastIndex = fileName.lastIndexOf("/");
                 int firstIndex = fileName.indexOf("/")+1;
-                String singleFileName = fileName.substring(lastIndex+1);
+                String singleFileName = fileName.substring(lastIndex);
                 if(fileName.endsWith(".java")){
-                    targetPath =fileName.substring(firstIndex,lastIndex)+"/"+baseDir+"/";
+                    targetPath =fileName.substring(firstIndex,lastIndex)+"/"+baseDir+singleFileName;
                 }else {
-                    targetPath = fileName.substring(firstIndex);
+                    targetPath = fileName.substring(firstIndex)+singleFileName;
                 }
-                FileUtil.writeContentToFile(getLog(),content,artifactId+"/"+targetPath,singleFileName,map);
+                FileUtil.writeContentToFile(getLog(),content,artifactId+"/"+targetPath,map);
             }
 
         } catch (Exception e) {
