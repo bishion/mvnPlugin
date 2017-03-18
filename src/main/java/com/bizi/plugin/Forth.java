@@ -27,8 +27,8 @@ public class Forth extends AbstractMojo{
         String basePackage = groupId+"."+artifactId;
         String baseDir = basePackage.replaceAll("\\.","/");
         Map<String,String> map = new HashMap<>(2);
-        map.put("[projectName]",artifactId);
-        map.put("[basepackage]",basePackage);
+        map.put("\\[projectName\\]",artifactId);
+        map.put("\\[basepackage\\]",basePackage);
         try {
             System.out.println(getClass().getResource("/init").toURI());
             String initPath = getClass().getResource("/init").getPath();
@@ -43,7 +43,7 @@ public class Forth extends AbstractMojo{
                 if(fileName.endsWith(".java")){
                     targetPath =fileName.substring(firstIndex,lastIndex)+"/"+baseDir+singleFileName;
                 }else {
-                    targetPath = fileName.substring(firstIndex)+singleFileName;
+                    targetPath = fileName.substring(firstIndex);
                 }
                 FileUtil.writeContentToFile(getLog(),content,artifactId+"/"+targetPath,map);
             }
